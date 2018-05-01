@@ -1,16 +1,42 @@
 \documentclass[10pt]{beamer}
-\usetheme{metropolis}
-\usepackage{appendixnumberbeamer}
+\usetheme[
+  outer/progressbar=foot,
+  outer/numbering=none
+]{metropolis}
 
+\usepackage{appendixnumberbeamer}
 \usepackage{booktabs}
 \usepackage[scale=2]{ccicons}
-
 \usepackage{pgfplots}
 \usepgfplotslibrary{dateplot}
-
 \usepackage{xspace}
-\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%  Customization
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\setlength{\metropolis@progressonsectionpage@linewidth}{0.8pt}
+\setlength{\metropolis@progressinheadfoot@linewidth}{0.8pt}
+\makeatother
+
+
+\definecolor{Berkeley Blue}{HTML}{003262}
+\definecolor{California Gold}{HTML}{FDB515}
+\definecolor{Founder Rock}{HTML}{3B7EA1}
+
+\setbeamercolor{frame title}{fg=Berkeley Blue}
+\setbeamercolor{alerted text}{bg=California Gold}
+
+\setsansfont[BoldFont={Fira Sans Light}, Numbers={OldStyle}]{Fira Sans Thin}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%  Title Page
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Adapting Swarm Application}
 \subtitle{A Systematic and Quantitative Approach}
 \date{\today}
@@ -27,56 +53,32 @@
   \tableofcontents[hideallsubsections]
 \end{frame}
 
-\section{Introduction}
-
-\begin{frame}{Introduction}
-
-\end{frame}
-
-\section{The Cloud is Not Enough}
-
-\begin{frame}{Security and Privacy}
-
-\end{frame}
-
-\section{AWStream}
-
-\begin{frame}{Bandwidth and Accuracy Tradeoff}
-
-\end{frame}
-
-\section{BRT}
-
-\begin{frame}{Bounded Response Times}
-
-\end{frame}
-
-
-
-\section{Conclusion}
-
-\begin{frame}{Summary}
-
-\end{frame}
-
-\begin{frame}[standout]
-
-  Questions?
-
-\end{frame}
+\input{sections/intro}
+\input{sections/motivation}
+\input{sections/awstream}
+\input{sections/brt}
+\input{sections/conclusion}
 
 \appendix
 
+\input{sections/ack}
+
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+
 \begin{frame}[fragile]{Backup slides}
-
+  Put backup slides here.
 \end{frame}
 
-\begin{frame}[allowframebreaks]{References}
+{
+  \metroset{titleformat frame=allsmallcaps}
 
-  \bibliography{talk}
-  \bibliographystyle{abbrv}
-
-\end{frame}
+  \begin{frame}[allowframebreaks]{References}
+    \bibliography{talk}
+    \bibliographystyle{abbrv}
+  \end{frame}
+}
 
 \end{document}
 
