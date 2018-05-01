@@ -4,6 +4,9 @@ sudo: required
 addons:
   apt:
     packages:
+      - fonts-lmodern
+      - latex-beamer
+      - latex-xcolor
       - latexmk
       - make
       - texlive-fonts-extra
@@ -16,10 +19,17 @@ addons:
       - texlive-xetex
 
 before_install:
+  ## Install Fira Fonts
+  - wget https://github.com/mozilla/Fira/archive/4.202.zip
+  - unzip 4.202.zip
+  - sudo mkdir -p /usr/share/fonts/opentype/Fira
+  - sudo cp Fira*/otf/Fira* /usr/share/fonts/opentype/Fira/
+  - sudo fc-cache -fv
+
+  ## Install Metropolis theme
   - wget https://github.com/matze/mtheme/archive/master.zip
   - unzip master.zip
   - (cd mtheme-master && make sty && make install)
-  - .ci/fira.sh
 
 script:
   - make
