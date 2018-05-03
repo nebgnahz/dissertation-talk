@@ -10,8 +10,26 @@
 \usepackage{pgfplots}
 \usepackage{xspace}
 \usepackage{caption}
+\usepackage{multirow}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
 
 \usepgfplotslibrary{dateplot}
+
+\lstset{
+  captionpos=b,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  escapeinside={(*@}{@*)},
+  basicstyle=\footnotesize\ttfamily,
+  columns=fullflexible,
+  morekeywords={maybe_downsample, maybe_skip, maybe}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -32,6 +50,9 @@
 \setbeamercolor{alerted text}{bg=California Gold}
 
 % \setsansfont[BoldFont={Fira Sans Light}, Numbers={OldStyle}]{Fira Sans Thin}
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -63,10 +84,6 @@
 \appendix
 
 % \input{ack}
-
-\begin{frame}[standout]
-  Questions?
-\end{frame}
 
 \begin{frame}[standout]
   Backup Slides.
