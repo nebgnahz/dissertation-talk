@@ -1,15 +1,16 @@
-\documentclass[10pt]{beamer}
+\documentclass[10pt, handout]{beamer}
 \usetheme[
   outer/progressbar=foot,
-  outer/numbering=none
+  outer/numbering=fraction
 ]{metropolis}
 
+\usepackage[scale=2]{ccicons}
 \usepackage{appendixnumberbeamer}
 \usepackage{booktabs}
-\usepackage[scale=2]{ccicons}
 \usepackage{pgfplots}
-\usepgfplotslibrary{dateplot}
 \usepackage{xspace}
+
+\usepgfplotslibrary{dateplot}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -52,7 +53,7 @@
   \tableofcontents[hideallsubsections]
 \end{frame}
 
-% \input{intro}
+\input{intro}
 % \input{motivation}
 % \input{awstream}
 % \input{brt}
@@ -60,7 +61,7 @@
 
 \appendix
 
-\input{ack}
+% \input{ack}
 
 \begin{frame}[standout]
   Questions?
@@ -72,7 +73,7 @@
 
 {
   \metroset{titleformat frame=allsmallcaps}
-
+  \footnotesize
   \begin{frame}[allowframebreaks]{References}
     \bibliography{talk}
     \bibliographystyle{abbrv}
