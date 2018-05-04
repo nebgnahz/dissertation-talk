@@ -106,18 +106,62 @@ let app = Camera::new((1920, 1080), 30)
 \begin{frame}{Runtime Adaptation}
   \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{figures/runtime-adaptation.PDF}
+    \includegraphics[width=\linewidth]{figures/runtime-adaptation.pdf}
     \caption{Runtime adaptation system architecture.}
     \label{fig:runtime}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Profiles}
+\begin{frame}{Top-K}
   \begin{figure}
-    \includegraphics[width=\linewidth]{figures/profile-mot.PDF}
+    \centering
+    \includegraphics[width=\columnwidth]{figures/topk.pdf}
+    \caption{A distributed Top-K application with two degradation operations:
+      \texttt{head} and \texttt{threshold}. In this example, \texttt{f2}, which
+      is not in Top-1 for either client, becomes the global Top-1 after the
+      merge. It would have been purged if the clients use threshold T=3,
+      demonstrating degradation that reduces data sizes affects fidelity.}
+    \label{fig:topk}
+    \vspace{-0.5em}
   \end{figure}
 \end{frame}
 
+\begin{frame}{Profiles}
+  \begin{figure}
+    \includegraphics[width=\linewidth]{figures/profile-mot.pdf}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}{All Profiles}
+  \begin{figure}[htb]
+    \centering
+    \begin{subfigure}[t]{0.49\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{figures/profile-darknet.pdf}
+      \caption{Augmented Reality (AR)}
+      \label{fig:ar-profile}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{figures/profile-mot.pdf}
+      \caption{Pedestrian Detection (PD)}
+      \label{fig:pd-profile}
+    \end{subfigure}
+    \caption{Application profiles of three applications. Each cross point is one
+      configuration $c$'s performance $(B(c), A(c))$. All figures show the
+      Pareto boundary as well as the performance if only tuning one
+      dimension. Note the x-axis is in log scale.}
+    \label{fig:all-profiles}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{All Profiles}
+  \begin{figure}
+    \includegraphics[width=0.9\linewidth]{figures/runtime_darknet-timeseries.pdf}
+  \end{figure}
+\end{frame}
 
 %%% Local Variables:
 %%% mode: latex
