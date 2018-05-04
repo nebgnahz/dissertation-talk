@@ -1,8 +1,9 @@
-\documentclass[10pt, handout]{beamer}
+\documentclass[10pt]{beamer}
 \usetheme[
   outer/progressbar=foot,
   outer/numbering=fraction
 ]{metropolis}
+\setbeamerfont{section title}{size=\normalsize}
 
 \usepackage[scale=2]{ccicons}
 \usepackage{algpseudocode}
@@ -18,6 +19,7 @@
 \usepackage{subcaption}
 \usepackage{xcolor}
 \usepackage{xspace}
+\usepackage{tikz}
 
 \definecolor[named]{ACMBlue}{cmyk}{1,0.1,0,0.1}
 \definecolor[named]{ACMYellow}{cmyk}{0,0.16,1,0}
@@ -94,21 +96,20 @@
   \tableofcontents[hideallsubsections]
 \end{frame}
 
-\input{intro}
-% \input{motivation}
-\input{awstream}
+% \input{intro}
+% \input{awstream}
 % \input{brt}
 % \input{conclusion}
 
 \appendix
 
-% \input{ack}
+\input{ack}
 
 \begin{frame}[standout]
   Backup Slides.
 \end{frame}
 
-\input{backup}
+% \input{backup}
 
 {
   \metroset{titleformat frame=allsmallcaps}
