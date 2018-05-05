@@ -1,4 +1,4 @@
-\documentclass[10pt,handout]{beamer}
+\documentclass[10pt]{beamer}
 \usetheme[
   outer/progressbar=foot,
   outer/numbering=fraction
@@ -108,14 +108,14 @@
   \tableofcontents[hideallsubsections]
 \end{frame}
 
-\input{intro}
+% \input{intro}
 \input{awstream}
 % \input{brt}
 % \input{conclusion}
 
 \appendix
 
-\input{ack}
+% \input{ack}
 
 \begin{frame}[standout]
   Backup Slides.
@@ -125,10 +125,10 @@
 
 {
   \metroset{titleformat frame=allsmallcaps}
-  \footnotesize
   \begin{frame}[allowframebreaks]{References}
+    \scriptsize
+    \bibliographystyle{apalike}
     \bibliography{talk}
-    \bibliographystyle{abbrv}
   \end{frame}
 }
 

@@ -37,7 +37,16 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{API}
+\begin{frame}{System Architecture Overview}
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/arch.pdf}\\
+  \begin{tikzpicture}
+    \draw[dashed] (0,0) -- (10,0);
+  \end{tikzpicture}
+  \includegraphics[width=0.7\linewidth]{figures/arch-2.pdf}
+\end{frame}
+
+\begin{frame}{(1) Stream Processing APIs}
   \begin{table}
     \scriptsize
     \begin{tabular}{ c r l }
@@ -49,8 +58,8 @@
       & \textit{window} (count: Integer, f: Vec<I> $\Rightarrow$ O) & Stream<I> $\Rightarrow$
                                                                       Stream<O> \\
       & ... & ... \\
-      \midrule
-      \multirow{5}{*}{Degradation}
+      \midrule \pause
+      \multirow{4}{*}{Adaptation}
       & \textit{maybe} (knobs: Vec<T>, f:  (T, I) $\Rightarrow$ I) & Stream<I> $\Rightarrow$
                                                                      Stream<I> \\
       & \textit{maybe\_skip} (knobs: Vec<Integer>) & Stream<I> $\Rightarrow$ Stream<I> \\
@@ -83,6 +92,13 @@ let app = Camera::new((1920, 1080), 30)
 
 \end{frame}
 
+\begin{frame}{(3) Runtime Adaptation}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/runtime-adaptation.pdf}
+  \end{figure}
+\end{frame}
+
 \begin{frame}{Applications}
   \begin{table}
     \footnotesize
@@ -109,20 +125,9 @@ let app = Camera::new((1920, 1080), 30)
       testing: 16 days} \\
       \bottomrule
     \end{tabular}
-    \vspace{0.5em}
-    \caption{Application details.}
-    \label{tab:apps}
-    \vspace{-1em}
   \end{table}
-\end{frame}
 
-\begin{frame}{Runtime Adaptation}
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{figures/runtime-adaptation.pdf}
-    \caption{Runtime adaptation system architecture.}
-    \label{fig:runtime}
-  \end{figure}
+  \includegraphics[width=\linewidth]{figures/apps.pdf}
 \end{frame}
 
 \begin{frame}{Top-K}
