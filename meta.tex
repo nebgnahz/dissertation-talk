@@ -1,0 +1,97 @@
+\setbeamerfont{section title}{size=\normalsize}
+
+\usepackage[scale=2]{ccicons}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{appendixnumberbeamer}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{shapepar}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{xspace}
+
+\usetikzlibrary{positioning}
+
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    % \pgfkeysalso doesn't change the path
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}
+  },
+  yn/.style={draw,thick,rounded corners,fill=yellow!20,inner sep=.3cm},
+  bn/.style={draw,thick,rounded corners,fill=blue!05,inner sep=.3cm},
+  on/.style={draw,thick,rounded corners,fill=orange!20,inner sep=.3cm},
+  rn/.style={draw,thick,rounded corners,fill=red!20,inner sep=.3cm},
+  to/.style={->,>=stealth,shorten >=1pt,semithick},
+}
+
+\definecolor[named]{ACMBlue}{cmyk}{1,0.1,0,0.1}
+\definecolor[named]{ACMYellow}{cmyk}{0,0.16,1,0}
+\definecolor[named]{ACMOrange}{cmyk}{0,0.42,1,0.01}
+\definecolor[named]{ACMRed}{cmyk}{0,0.90,0.86,0}
+\definecolor[named]{ACMLightBlue}{cmyk}{0.49,0.01,0,0}
+\definecolor[named]{ACMGreen}{cmyk}{0.20,0,1,0.19}
+\definecolor[named]{ACMPurple}{cmyk}{0.55,1,0,0.15}
+\definecolor[named]{ACMDarkBlue}{cmyk}{1,0.58,0,0.21}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ACMRed,
+  urlcolor=ACMBlue,
+  citecolor=ACMRed,
+}
+
+\usepgfplotslibrary{dateplot}
+
+\lstset{
+  captionpos=b,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  escapeinside={(*@}{@*)},
+  basicstyle=\footnotesize\ttfamily,
+  columns=fullflexible,
+  morekeywords={maybe_downsample, maybe_skip, maybe}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%  Customization
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\setlength{\metropolis@progressonsectionpage@linewidth}{0.8pt}
+\setlength{\metropolis@progressinheadfoot@linewidth}{0.8pt}
+\makeatother
+
+\definecolor{Berkeley Blue}{HTML}{003262}
+\definecolor{California Gold}{HTML}{FDB515}
+\definecolor{Founder Rock}{HTML}{3B7EA1}
+
+\setbeamercolor{frame title}{fg=Berkeley Blue}
+\setbeamercolor{alerted text}{bg=California Gold}
+
+% \setsansfont[BoldFont={Fira Sans Light}, Numbers={OldStyle}]{Fira Sans Thin}
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+%%% Local Variables:
+%%% mode: latex
+%%% tex-engine: xetex
+%%% TeX-master: "talk"
+%%% End:

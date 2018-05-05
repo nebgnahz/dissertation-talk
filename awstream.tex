@@ -43,10 +43,37 @@
   \begin{tikzpicture}
     \draw[dashed] (0,0) -- (10,0);
   \end{tikzpicture}
+  \centering
   \includegraphics[width=0.7\linewidth]{figures/arch-2.pdf}
 \end{frame}
 
 \begin{frame}{(1) Stream Processing APIs}
+  \centering
+  \begin{tikzpicture}
+    \node[bn, minimum width=2cm] (op) {Operator};
+    \node [left=1cm of op] (left) {Data Stream};
+    \node [right=1cm of op] (right) {Data Stream};
+    \draw[to] (left) -- (op);
+    \draw[to] (op) -- (right);
+  \end{tikzpicture}
+
+  \vspace{2em}
+  \scalebox{0.7}{
+    \begin{tikzpicture}
+      \node[bn, minimum width=3cm] (op) {map(f)};
+      \node [left=1cm of op] (left) {$\{x_1, x_2, x_3, x_4, \ldots \}$};
+      \node [right=1cm of op] (right) {$\{f(x_1), f(x_2), f(x_3), f(x_4), ...\}$};
+      \draw[to] (left) -- (op);
+      \draw[to] (op) -- (right);
+
+      \node[bn, minimum width=3cm, below=0.5cm of op] (op2) {window(2, f)};
+      \node [left=1cm of op2] (left2) {$\{x_1, x_2, x_3, x_4, \ldots \}$};
+      \node [right=1cm of op2] (right2) {$\{f(x_1, x_2), f(x_3, x_4), ...\}$};
+      \draw[to] (left2) -- (op2);
+      \draw[to] (op2) -- (right2);
+    \end{tikzpicture}
+  }
+
   \begin{table}
     \scriptsize
     \begin{tabular}{ c r l }
