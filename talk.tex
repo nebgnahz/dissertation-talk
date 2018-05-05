@@ -21,6 +21,15 @@
 \usepackage{xspace}
 \usepackage{tikz}
 
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    % \pgfkeysalso doesn't change the path
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}
+  },
+}
+
 \definecolor[named]{ACMBlue}{cmyk}{1,0.1,0,0.1}
 \definecolor[named]{ACMYellow}{cmyk}{0,0.16,1,0}
 \definecolor[named]{ACMOrange}{cmyk}{0,0.42,1,0.01}
@@ -97,13 +106,13 @@
 \end{frame}
 
 % \input{intro}
-% \input{awstream}
+\input{awstream}
 % \input{brt}
 % \input{conclusion}
 
 \appendix
 
-\input{ack}
+% \input{ack}
 
 \begin{frame}[standout]
   Backup Slides.

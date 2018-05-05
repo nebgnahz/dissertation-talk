@@ -1,0 +1,88 @@
+\begin{frame}{Application-specific Optimizations Don't Generalize}
+  \captionsetup[figure]{labelformat=empty,font=scriptsize,labelfont=scriptsize}
+
+  \pgfplotstableread[row sep=\\,col sep=&]{
+    Frame Rate & Bandwidth (normalized) & Accuracy \\
+    30 & 100 & 100 \\
+    10 & 40.2 & 92.3 \\
+     5 & 21.3 & 89.5 \\
+     3 & 13.3 & 86.7 \\
+     2 & 8.9 & 84.1 \\
+  }\stationaryframerate
+  \pgfplotstableread[row sep=\\,col sep=&]{
+    Resolution & Bandwidth (normalized) & Accuracy \\
+    1080p & 100 & 100 \\
+    900p & 79.3 & 86.9 \\
+    720p & 53.8 & 84.4 \\
+    540p & 29.4 & 70.5 \\
+    360p & 17.3 & 11.1 \\
+  }\stationaryresolution
+
+  \begin{columns}[c]
+    \column{0.4\textwidth}
+    \begin{figure}
+      \centering
+      \includegraphics[width=\linewidth]{figures/mot-1.pdf}
+      \caption{t=0s, small target in far-field views}
+    \end{figure}
+    \vspace{-1em}
+    \begin{figure}
+      \centering
+      \includegraphics[width=\linewidth]{figures/mot-2.pdf}
+      \caption{t=1s, small difference compared to t=0s}
+    \end{figure}
+
+    \column{0.6\textwidth}
+    \vspace{1.5em}
+
+    \begin{tikzpicture}[scale=1, every node/.style={scale=0.7}]
+      \begin{axis}[
+        ybar,
+        bar width               = .5cm,
+        width                   = 1.2\textwidth,
+        height                  = 0.4\textheight,
+        legend style            = {at = {(0.5, 1.4)}, anchor = north,legend columns = -1},
+        symbolic x coords       = {30, 10, 5, 3, 2},
+        xtick                   = data,
+        enlarge x limits        = 0.15,
+        ymin                    = 0,
+        ymax                    = 130,
+        xlabel                  = {Frame Rate},
+        nodes near coords,
+        nodes near coords align = {vertical},
+        ]
+        \addplot table[x=Frame Rate,y=Bandwidth (normalized)]{\stationaryframerate};
+        \addplot table[x=Frame Rate,y=Accuracy]{\stationaryframerate};
+        \legend{Bandwidth (normalized), Accuracy}
+      \end{axis}
+    \end{tikzpicture}
+
+    \vspace{1em}
+
+    \begin{tikzpicture}[scale=1, every node/.style={scale=0.7}]
+      \begin{axis}[
+        ybar,
+        bar width               = .5cm,
+        width                   = 1.2\textwidth,
+        height                  = 0.4\textheight,
+        symbolic x coords       = {1080p, 900p, 720p, 540p, 360p},
+        xtick                   = data,
+        enlarge x limits        = 0.15,
+        nodes near coords,
+        nodes near coords align = {vertical},
+        ymin                    = 0,
+        ymax                    = 130,
+        xlabel                  = {Resolution},
+        ]
+        \addplot table[x = Resolution, y = Bandwidth (normalized)]{\stationaryresolution};
+        \addplot table[x = Resolution, y = Accuracy]{\stationaryresolution};
+        \legend{}
+      \end{axis}
+    \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../talk"
+%%% End:
