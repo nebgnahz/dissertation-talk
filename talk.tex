@@ -1,10 +1,13 @@
-\documentclass[10pt]{beamer}
+\documentclass[10pt,handout]{beamer}
 \usetheme[
   outer/progressbar=foot,
   outer/numbering=fraction
 ]{metropolis}
 \setbeamerfont{section title}{size=\normalsize}
 
+\usepackage{fontspec}
+\usepackage{microtype}
+\usepackage{shapepar}
 \usepackage[scale=2]{ccicons}
 \usepackage{algpseudocode}
 \usepackage{amsmath}
@@ -105,14 +108,14 @@
   \tableofcontents[hideallsubsections]
 \end{frame}
 
-% \input{intro}
-\input{awstream}
+\input{intro}
+% \input{awstream}
 % \input{brt}
 % \input{conclusion}
 
 \appendix
 
-% \input{ack}
+\input{ack}
 
 \begin{frame}[standout]
   Backup Slides.
