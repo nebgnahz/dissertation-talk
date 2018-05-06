@@ -11,12 +11,16 @@ addons:
       - latexmk
       - make
       - texlive-base
+      - texlive-xetex
+      - texlive-fonts-recommended
+      - texlive-fonts-extra
 
 before_install:
   ## Install Fira Fonts
   - wget -q https://github.com/mozilla/Fira/archive/4.202.zip
   - unzip -qq 4.202.zip
-  - cp Fira*/otf/Fira* .fonts
+  - mkdir -p $HOME/.fonts
+  - cp Fira*/otf/Fira* $HOME/.fonts
 
   ## Install Metropolis theme
   - wget -q https://github.com/matze/mtheme/archive/master.zip
