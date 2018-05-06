@@ -4,12 +4,16 @@ addons:
   apt:
     packages:
       - fonts-lmodern
+      - latex-beamer
+      - latex-xcolor
+      - latexmk
       - make
 
 install:
   - ./install.sh
 
 script:
+  - export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
   - make
   - mkdir -p pdf
   - mv talk.pdf pdf/
