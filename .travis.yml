@@ -10,14 +10,7 @@ addons:
       - latex-xcolor
       - latexmk
       - make
-      - texlive-base
-      - texlive-fonts-extra
-      - texlive-fonts-recommended
-      - texlive-generic-extra
-      - texlive-latex-extra
-      - texlive-math-extra
-      - texlive-pictures
-      - texlive-science
+      - texlive-full
       - texlive-xetex
 
 before_install:
