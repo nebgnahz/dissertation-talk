@@ -19,17 +19,9 @@ addons:
       - texlive-xetex
 
 before_install:
-  ## Install Fira Fonts
-  - wget -q https://github.com/mozilla/Fira/archive/4.202.zip
-  - unzip -qq 4.202.zip
-  - sudo mkdir -p /usr/share/fonts/opentype/Fira
-  - sudo cp Fira*/otf/Fira* /usr/share/fonts/opentype/Fira/
-  - sudo fc-cache -fv
+  ## Install Dependencies
+  - ./install.sh
 
-  ## Install Metropolis theme
-  - wget -q https://github.com/matze/mtheme/archive/master.zip
-  - unzip -qq master.zip
-  - (cd mtheme-master && make sty && make install)
 
 script:
   - make
