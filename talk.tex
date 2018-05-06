@@ -18,11 +18,13 @@
 % \institute{}
 % \titlegraphic{\hfill\includegraphics[height=0.8cm]{figures/terraswarm.png}}
 
+\listfiles
+
 \begin{document}
 
 \maketitle
 
-% \def\development{1}
+\def\development{1}
 
 \ifx\development\undefined
 
@@ -61,10 +63,15 @@
 
 \else
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%  Only Development
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \input{frames/awstream-profiling}
 
 \fi
-
 
 \end{document}
 
