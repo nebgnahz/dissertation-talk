@@ -1,6 +1,7 @@
 .PHONY: talk-handout.pdf talk.pdf
 
 LATEX = xelatex
+BIBTEX = bibtex
 SRCS = $(shell find . -name '*.tex')
 TEX_FLAGS = -interaction=nonstopmode -halt-on-error
 TALK="\def\iscomplete{1} \input{talk.tex}"
@@ -10,14 +11,14 @@ ALL: talk-handout.pdf talk.pdf
 
 talk-handout.pdf: $(SRCS)
 	$(LATEX) $(TEX_FLAGS) $(HANDOUT)
-	$(BIBTEX) $(TEX_FLAGS) $(HANDOUT)
+	$(BIBTEX) talk
 	$(LATEX) $(TEX_FLAGS) $(HANDOUT)
 	$(LATEX) $(TEX_FLAGS) $(HANDOUT)
-	@mv talk.pdf talk-handout.pdf
+	mv talk.pdf talk-handout.pdf
 
 talk.pdf: $(SRCS)
 	$(LATEX) $(TEX_FLAGS) $(TALK)
-	$(BIBTEX) $(TEX_FLAGS) $(TALK)
+	$(BIBTEX) talk
 	$(LATEX) $(TEX_FLAGS) $(TALK)
 	$(LATEX) $(TEX_FLAGS) $(TALK)
 
