@@ -128,10 +128,12 @@ let quantized_stream = vec![1, 2, 3, 4].into_stream()
 let app = Camera::new((1920, 1080), 30)
     .maybe_downsample(vec![(1600, 900), (1280, 720)])
     .maybe_skip(vec![2, 5])
-    .map(|frame| frame.show())
+    .map(|frame| pedestrian_detect(frame))
     .compose();
   \end{lstlisting}
 \end{frame}
+
+\input{frames/awstream-profiling.tex}
 
 \begin{frame}{(3) Runtime Adaptation}
   \begin{figure}

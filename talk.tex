@@ -22,25 +22,33 @@
 
 \maketitle
 
+% \def\development{1}
+
+\ifx\development\undefined
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%  Whole Document
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Table of contents}
   \setbeamertemplate{section in toc}[sections numbered]
   \tableofcontents[hideallsubsections]
 \end{frame}
-
-% \input{intro}
+\input{intro}
 \input{awstream}
-% \input{brt}
-% \input{conclusion}
+\input{brt}
+\input{conclusion}
 
 \appendix
 
-% \input{ack}
+\input{ack}
 
 \begin{frame}[standout]
   Backup Slides.
 \end{frame}
 
-% \input{backup}
+\input{backup}
 
 {
   \metroset{titleformat frame=allsmallcaps}
@@ -50,6 +58,13 @@
     \bibliography{talk}
   \end{frame}
 }
+
+\else
+
+\input{frames/awstream-profiling}
+
+\fi
+
 
 \end{document}
 

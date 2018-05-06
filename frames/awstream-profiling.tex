@@ -1,0 +1,94 @@
+\begin{frame}[fragile]{(2) Profiling}
+
+\begin{lstlisting}
+let app = Camera::new((1920, 1080), 30)
+    .maybe_downsample(vec![(1600, 900), (1280, 720)])
+    .maybe_skip(vec![2, 5])
+    .map(|frame| pedestrian_detect(frame))
+    .compose();
+\end{lstlisting}
+
+  Training Data
+
+  Accuracy/Utility Function
+
+  \footnotesize
+  \begin{table}
+    \centering
+    \begin{tabular}{c c c c}
+      \toprule
+      downsample & skip & bandwidth & accuracy \\
+      \midrule
+      (1920, 1080) & 0 & 10.7 & 1.0 \\
+      (1600, 900)  & 0 & 8.3 & 0.88  \\
+      (1280, 720)  & 0 & 6.3 & 0.87 \\
+      (1920, 1080) & 2 & 9.3 & 0.90 \\
+      ... & ... & ... & ... \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{Pareto-optimal Strategy}
+  \begin{columns}
+    \begin{column}{0.39\textwidth}
+      \centering
+
+      \def\points{(0.95, 0.95), (0.93, 0.91), (0.90, 0.91), (0.80, 0.87),
+        (0.70, 0.85), (0.64, 0.70), (0.5, 0.66), (0.4, 0.60)}
+      
+      \begin{tikzpicture}
+        \begin{axis}[
+          width  = \textwidth,
+          xlabel = Bandwidth (normalize),
+          ylabel = Accuracy,
+          ymin   = 0,
+          ymax   = 1,
+          ytick  = {0, 1},
+          xmin   = 0,
+          xmax   = 1,
+          xtick  = {0, 1},
+          ]
+
+          \foreach \p [count=\i] in \points {
+            \only<+->\addplot[color=red, mark=x, only marks] coordinates \p;
+          }
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+
+    \pause
+
+    \begin{column}{0.59\linewidth}
+      \scriptsize
+      \begin{table}
+        \centering
+        \begin{tabular}{r l}
+          \toprule
+          \textbf{Symbol} & \textbf{Description} \\
+          \midrule
+          $n$ & number of degradation operations \\
+          $k_i$ & the \textit{i}-th degradation knob \\
+          $c = [k_{1}, k_{2}, ... k_{n}]$ & one specific configuration \\
+          $\mathbb{C}$ & the set of all configurations \\
+          \midrule
+          $B(c)$ & bandwidth requirement for $c$ \\
+          $A(c)$ & accuracy measure for $c$ \\
+          $\mathbb{P}$ & Pareto-optimal set \\
+          \bottomrule
+        \end{tabular}
+      \end{table}
+
+      \begin{equation*}
+        \mathbb{P} = \{ c \in \mathbb{C} : \{ c' \in \mathbb{C}: B(c') < B(c),
+        A(c') > A(c) \} = \varnothing\}
+      \end{equation*}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../talk"
+%%% TeX-engine: xetex
+%%% End:
