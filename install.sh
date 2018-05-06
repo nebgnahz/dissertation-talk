@@ -11,7 +11,7 @@ if ! command -v xetex > /dev/null; then
   cd install-tl-20*
 
   # Install a minimal system
-  ./install-tl --profile=.texlive.profile
+  ./install-tl --profile=../.texlive.profile
 
   cd ..
 fi
