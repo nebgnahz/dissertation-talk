@@ -4,6 +4,7 @@ Dissertation Talk based on Beamer and Metropolis
 [![Build Status][travis-badge]][travis]
 
 - [Slides](https://nebgnahz.github.io/dissertation-talk/talk.pdf)
+- [Slides (handout)](https://nebgnahz.github.io/dissertation-talk/talk-handout.pdf)
 
 ## Abstract: Adapting Swarm Applications
 

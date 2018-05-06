@@ -1,4 +1,9 @@
-\documentclass[10pt]{beamer}
+\ifdefined\ishandout
+  \documentclass[handout]{beamer}
+\else
+  \documentclass{beamer}
+\fi
+
 \usetheme[
   outer/progressbar=foot,
   outer/numbering=fraction
@@ -22,9 +27,7 @@
 
 \maketitle
 
-% \def\development{1}
-
-\ifx\development\undefined
+\ifdefined\iscomplete
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -41,6 +44,10 @@
 \input{conclusion}
 
 \appendix
+
+\begin{frame}[standout]
+  Epilogue
+\end{frame}
 
 \input{ack}
 
@@ -61,7 +68,8 @@
 
 \else
 
-\input{frames/awstream-profiling}
+% \input{frames/awstream-profiling}
+\input{ack}
 
 \fi
 
