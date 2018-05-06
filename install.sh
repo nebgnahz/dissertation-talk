@@ -3,7 +3,17 @@
 set -ex
 
 # See if there is a cached version of TL available
-export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
+export TEXPATH=/tmp/texlive/bin/x86_64-linux
+export PATH=$TEXPATH:$PATH
+
+## Install Fira Fonts
+if [ ! -d $HOME/.fonts ]; then
+  wget -q https://github.com/mozilla/Fira/archive/4.202.zip
+  unzip -qq 4.202.zip
+  mkdir -p $HOME/.fonts
+  cp Fira*/otf/Fira* $HOME/.fonts
+fi
+
 if ! command -v xetex > /dev/null; then
   # Obtain TeX Live
   wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
@@ -14,25 +24,44 @@ if ! command -v xetex > /dev/null; then
   ./install-tl --profile=../.texlive.profile
 
   cd ..
+
+  # Needed for TeX Live 2017
+  tlmgr install \
+        appendixnumberbeamer \
+        beamer \
+        beamertheme-metropolis
+  booktabs \
+      caption \
+      collection-fontsextra \
+      collection-fontsrecommended \
+      collection-mathscience \
+      collection-pictures \
+      collection-xetex \
+      etoolbox \
+      fancyvrb \
+      fontspec \
+      listings \
+      mathtools \
+      microtype \
+      multirow \
+      scheme-xetex \
+      shapepar \
+      translator \
+      xkeyval
+
+  # Update the TL install but add nothing new
+  tlmgr update --self --all --no-auto-install
+
+  # Keep no backups (not required, simply makes cache bigger)
+  tlmgr option -- autobackup 0
+
+  ## Install latexmk
+  wget http://mirrors.ctan.org/support/latexmk.zip
+  unzip latexmk.zip
+  cp latexmk/latexmk.pl $TEXPATH/latexmk
 fi
 
-# Update the TL install but add nothing new
-tlmgr update --self --all --no-auto-install
-
-# Keep no backups (not required, simply makes cache bigger)
-tlmgr option -- autobackup 0
-
-# Needed for TeX Live 2017
-tlmgr install scheme-full
-
-## Install Fira Fonts
-wget -q https://github.com/mozilla/Fira/archive/4.202.zip
-unzip -qq 4.202.zip
-sudo mkdir -p /usr/share/fonts/opentype/Fira
-sudo cp Fira*/otf/Fira* /usr/share/fonts/opentype/Fira/
-sudo fc-cache -fv
-
 ## Install Metropolis theme
-wget -q https://github.com/matze/mtheme/archive/master.zip
-unzip -qq master.zip
-(cd mtheme-master && make sty && make install)
+# wget -q https://github.com/matze/mtheme/archive/master.zip
+# unzip -qq master.zip
+# (cd mtheme-master && make sty && make install)

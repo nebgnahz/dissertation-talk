@@ -18,6 +18,7 @@ script:
 directories:
   - /tmp/texlive
   - $HOME/.texlive
+  - $HOME/.fonts
 
 branches:
   only:
