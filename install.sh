@@ -2,9 +2,9 @@
 
 set -ex
 
-sudo add-apt-repository ppa:jonathonf/texlive
+sudo add-apt-repository ppa:jonathonf/texlive -y
 sudo apt update
-sudo apt install               \
+sudo apt install -y            \
      fonts-lmodern             \
      latex-beamer              \
      latex-xcolor              \
