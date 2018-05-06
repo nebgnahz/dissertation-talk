@@ -25,29 +25,29 @@ if ! command -v xetex > /dev/null; then
 
   cd ..
 
-  # Needed for TeX Live 2017
+  # list: http://ctan.mirrors.hoobly.com/systems/texlive/tlnet/archive/
   tlmgr install \
         appendixnumberbeamer \
         beamer \
-        beamertheme-metropolis
-  booktabs \
-      caption \
-      collection-fontsextra \
-      collection-fontsrecommended \
-      collection-mathscience \
-      collection-pictures \
-      collection-xetex \
-      etoolbox \
-      fancyvrb \
-      fontspec \
-      listings \
-      mathtools \
-      microtype \
-      multirow \
-      scheme-xetex \
-      shapepar \
-      translator \
-      xkeyval
+        beamertheme-metropolis \
+        booktabs \
+        caption \
+        collection-fontsextra \
+        collection-fontsrecommended \
+        collection-mathscience \
+        collection-pictures \
+        collection-xetex \
+        etoolbox \
+        fancyvrb \
+        fontspec \
+        listings \
+        mathtools \
+        microtype \
+        multirow \
+        scheme-xetex \
+        shapepar \
+        translator \
+        xkeyval
 
   # Update the TL install but add nothing new
   tlmgr update --self --all --no-auto-install
