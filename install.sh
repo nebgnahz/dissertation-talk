@@ -32,10 +32,8 @@ if ! command -v xetex > /dev/null; then
         beamertheme-metropolis \
         booktabs \
         caption \
-        collection-fontsextra \
-        collection-fontsrecommended \
+        ccicons \
         collection-mathscience \
-        collection-pictures \
         collection-xetex \
         etoolbox \
         fancyvrb \
@@ -44,7 +42,8 @@ if ! command -v xetex > /dev/null; then
         mathtools \
         microtype \
         multirow \
-        scheme-xetex \
+        pgfopts \
+        pgfplots \
         shapepar \
         translator \
         xkeyval
