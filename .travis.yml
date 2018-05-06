@@ -4,7 +4,6 @@ addons:
   apt:
     packages:
       - fonts-lmodern
-      - latexmk
       - make
 
 install:
