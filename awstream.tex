@@ -57,81 +57,9 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Applications}
-  \begin{table}
-    \footnotesize
-    \centering
-    \begin{tabular}{c c c c}
-      \toprule
-      Application & Knobs & Accuracy & Dataset \\
-      \midrule
-      \specialcell{Augmented\\Reality}
-                  & \specialcell{resolution \\ frame rate \\ quantization }
-                  & F1 score~\cite{Rijsbergen:1979:IR:539927}
-                          & \specialcell{iPhone video clips\\training: office (24
-      s)\\testing: home (246 s)} \\
-      \midrule
-      \specialcell{Pedestrian\\Detection}
-                  & \specialcell{resolution \\ frame rate \\ quantization }
-                  & F1 score
-                          & \specialcell{MOT16~\cite{milan2016mot16}\\training: MOT16-04\\testing: MOT16-03} \\
-      \midrule
-      \specialcell{Log Analysis\\(Top-K, K=50)}
-                  & \specialcell{head (N) \\ threshold (T) }
-                  & \specialcell{Kendall's $\tau$~\cite{abdi2007kendall}}
-                          & \specialcell{\href{https://www.sec.gov}{SEC.gov} logs~\cite{edgarlog} \\ training: 4 days \\
-      testing: 16 days} \\
-      \bottomrule
-    \end{tabular}
-  \end{table}
+\input{frames/awstream-apps.tex}
+\input{frames/awstream-eval.tex}
 
-  \includegraphics[width=\linewidth]{figures/apps.pdf}
-\end{frame}
-
-\begin{frame}{Top-K}
-  \begin{figure}
-    \centering
-    \includegraphics[width=\columnwidth]{figures/topk.pdf}
-    \caption{A distributed Top-K application with two degradation operations:
-      \texttt{head} and \texttt{threshold}. In this example, \texttt{f2}, which
-      is not in Top-1 for either client, becomes the global Top-1 after the
-      merge. It would have been purged if the clients use threshold T=3,
-      demonstrating degradation that reduces data sizes affects fidelity.}
-    \label{fig:topk}
-    \vspace{-0.5em}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Profiles}
-  \begin{figure}
-    \includegraphics[width=\linewidth]{figures/profile-mot.pdf}
-  \end{figure}
-\end{frame}
-
-
-\begin{frame}{All Profiles}
-  \begin{figure}[htb]
-    \centering
-    \begin{subfigure}[t]{0.49\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{figures/profile-darknet.pdf}
-      \caption{Augmented Reality (AR)}
-      \label{fig:ar-profile}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.49\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{figures/profile-mot.pdf}
-      \caption{Pedestrian Detection (PD)}
-      \label{fig:pd-profile}
-    \end{subfigure}
-    \caption{Application profiles of three applications. Each cross point is one
-      configuration $c$'s performance $(B(c), A(c))$. All figures show the
-      Pareto boundary as well as the performance if only tuning one
-      dimension. Note the x-axis is in log scale.}
-    \label{fig:all-profiles}
-  \end{figure}
-\end{frame}
 
 \begin{frame}{All Profiles}
   \begin{figure}
