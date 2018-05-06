@@ -55,8 +55,8 @@ if ! command -v xetex > /dev/null; then
   tlmgr option -- autobackup 0
 
   ## Install latexmk
-  wget http://mirrors.ctan.org/support/latexmk.zip
-  unzip latexmk.zip
+  wget -q http://mirrors.ctan.org/support/latexmk.zip
+  unzip -qq latexmk.zip
   cp latexmk/latexmk.pl $TEXPATH/latexmk
 fi
 
