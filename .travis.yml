@@ -15,14 +15,11 @@ script:
   - mkdir -p pdf
   - mv talk.pdf pdf/
 
-directories:
-  - /tmp/texlive
-  - $HOME/.texlive
-  - $HOME/.fonts
-
-branches:
-  only:
-  - master
+cache:
+  directories:
+    - /tmp/texlive
+    - $HOME/.texlive
+    - $HOME/.fonts
 
 deploy:
   provider: pages
