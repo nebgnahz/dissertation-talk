@@ -4,8 +4,6 @@ addons:
   apt:
     packages:
       - fonts-lmodern
-      - latex-beamer
-      - latex-xcolor
       - latexmk
       - make
 
