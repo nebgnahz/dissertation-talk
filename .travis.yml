@@ -1,7 +1,8 @@
 language: ruby
-sudo: required
 
 addons:
+  sources:
+    - sourceline: 'ppa:jonathonf/texlive'
   apt:
     packages:
       - fonts-lmodern
@@ -9,22 +10,13 @@ addons:
       - latex-xcolor
       - latexmk
       - make
-      - texlive-fonts-extra
-      - texlive-fonts-recommended
-      - texlive-generic-extra
-      - texlive-latex-extra
-      - texlive-math-extra
-      - texlive-pictures
-      - texlive-science
-      - texlive-xetex
+      - texlive-base
 
 before_install:
   ## Install Fira Fonts
   - wget -q https://github.com/mozilla/Fira/archive/4.202.zip
   - unzip -qq 4.202.zip
-  - sudo mkdir -p /usr/share/fonts/opentype/Fira
-  - sudo cp Fira*/otf/Fira* /usr/share/fonts/opentype/Fira/
-  - sudo fc-cache -fv
+  - cp Fira*/otf/Fira* .fonts
 
   ## Install Metropolis theme
   - wget -q https://github.com/matze/mtheme/archive/master.zip
@@ -47,3 +39,6 @@ deploy:
   local_dir: pdf
   on:
     branch: master
+
+cache:
+  apt: true
