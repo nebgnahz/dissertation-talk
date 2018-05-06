@@ -1,0 +1,104 @@
+\begin{frame}{(1) Stream Processing APIs}
+  \vspace{1em}
+  \centering
+  \begin{tikzpicture}
+    \node[bn, minimum width=2cm] (op) {Operator};
+    \node [left=1cm of op] (left) {Data Stream};
+    \node [right=1cm of op] (right) {Data Stream};
+    \draw[to] (left) -- (op);
+    \draw[to] (op) -- (right);
+  \end{tikzpicture}
+
+  \visible<2->{
+    \vspace{1em}
+    \scalebox{0.7}{
+      \begin{tikzpicture}
+        \node[bn, minimum width=3cm] (op) {map(f)};
+        \node [left=1cm of op] (left) {$\{x_1, x_2, x_3, x_4, \ldots \}$};
+        \node [right=1cm of op] (right) {$\{f(x_1), f(x_2), f(x_3), f(x_4), ...\}$};
+        \draw[to] (left) -- (op);
+        \draw[to] (op) -- (right);
+
+        \node[bn, minimum width=3cm, below=0.5cm of op] (op2) {window(2, f)};
+        \node [left=1cm of op2] (left2) {$\{x_1, x_2, x_3, x_4, \ldots \}$};
+        \node [right=1cm of op2] (right2) {$\{f(x_1, x_2), f(x_3, x_4), ...\}$};
+        \draw[to] (left2) -- (op2);
+        \draw[to] (op2) -- (right2);
+
+        \visible<4->{
+        \node[bn, minimum width=3cm, below=0.5 of op2] (op3) {maybe($\vec{k}$, f)};
+        \node [left=1cm of op3] (left3) {$\{x_1, x_2, x_3, x_4, \ldots \}$};
+        \node [right=1cm of op3] (right3) {$\{f(x_1, k_{i_1}), f(x_2, k_{i_2}), f(x_3, k_{i_3}),
+          f(x_4, k_{i_4}), ...\}$};
+        \draw[to] (left3) -- (op3);
+        \draw[to] (op3) -- (right3);
+        }
+      \end{tikzpicture}
+    }
+  }
+  
+  \visible<3->{
+  \begin{table}
+    \scriptsize
+    \begin{tabular}{ c r l }
+      \toprule
+      \multirow{4}{*}{Normal}
+      & \textit{map} (f: I $\Rightarrow$ O) & Stream<I> $\Rightarrow$ Stream<O> \\
+      & \textit{skip} (i: Integer) & Stream<I> $\Rightarrow$
+                                     Stream<I> \\
+      & \textit{window} (count: Integer, f: Vec<I> $\Rightarrow$ O) & Stream<I> $\Rightarrow$
+                                                                      Stream<O> \\
+      & ... & ... \\
+      \midrule \visible<5->{
+      \multirow{4}{*}{Adaptation}
+      & \textit{maybe} (knobs: Vec<T>, f:  (T, I) $\Rightarrow$ I) & Stream<I> $\Rightarrow$
+                                                                     Stream<I> \\
+      & \textit{maybe\_skip} (knobs: Vec<Integer>) & Stream<I> $\Rightarrow$ Stream<I> \\
+      & \textit{maybe\_head} (knobs: Vec<Integer>) & Stream<Vec<I>{}> $\Rightarrow$
+                                                     Stream<Vec<I>{}> \\
+      & ... & ... \\
+      \bottomrule
+      }
+    \end{tabular}
+  \end{table}
+  }
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{maybe(knobs: Vec<T>, f: (T, I) => I)}}
+  \begin{tikzpicture}[
+    level distance=2cm,
+    level 1/.style={sibling distance=4cm},
+    edge from parent/.style={->,draw},
+    >=latex]
+    \node[bn] {
+\begin{lstlisting}
+let quantized_stream = vec![1, 2, 3, 4].into_stream()
+    .maybe(vec![2, 4], |k, val| val / k)
+    .collect();
+\end{lstlisting}
+    }
+    child {node[yn] (c1) {[1, 2, 3, 4]} edge from parent node [left] {no degradation}}
+    child {node[yn] (c2) {[0, 1, 1, 2]} edge from parent node [left] {k = 2}}
+    child {node[yn] (c3) {[0, 0, 0, 1]} edge from parent node [left] {k = 4}};
+  \end{tikzpicture}
+
+  \pause
+  \vspace{2em}
+  We rewrite the video streaming application as follows{\let\thefootnote\relax\footnote{{Example code in
+    Rust, simplified for presentation.}}},
+
+  \centering
+  \begin{lstlisting}
+let app = Camera::new((1920, 1080), 30)
+    .maybe_downsample(vec![(1600, 900), (1280, 720)])
+    .maybe_skip(vec![2, 5])
+    .map(|frame| pedestrian_detect(frame))
+    .compose();
+  \end{lstlisting}
+\end{frame}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../talk"
+%%% TeX-engine: xetex
+%%% End:
