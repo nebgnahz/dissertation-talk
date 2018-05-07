@@ -1,16 +1,65 @@
 \begin{frame}{Lessons \& Philosophy: Adaptation in Life}
   \centering
-  \vspace{3em}
-  \begin{tikzpicture}
-    \draw [thick] [<->] (0,6) node [left] {Happiness}
-    -- (0,0) --
-    (6,0) node [below] {Money};
+  \begin{columns}
+    \column{0.6\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+        width  = \textwidth,
+        xlabel = Money,
+        ylabel = Happiness,
+        ymin   = 0,
+        ymax   = 1,
+        ytick  = {0, 1},
+        xmin   = 0,
+        xmax   = 1,
+        xtick  = {0, 1},
+        ]
 
-    \foreach \Point in {(5.5, 5.5), (5, 5.2), (4.5, 4.9), (4, 4.5), (3.8, 4.3)}{
-      % \node<+-> [ACMBlue] at \Point {x};
-      \node [ACMBlue] at \Point {x};
-    }
-  \end{tikzpicture}
+        \addplot[color=red, mark=x, only marks] coordinates {(0.5, 0.5)};
+        \addplot[color=red, mark=x, only marks] coordinates {(0.4, 0.7)};
+        \addplot[color=red, mark=x, only marks] coordinates {(0.4, 0.6)};
+
+        \addplot[color=red, mark=x, only marks] coordinates {
+          (0.6, 0.7)
+          (0.5, 0.65)
+          (0.4, 0.55)
+          (0.3, 0.50)
+          (0.2, 0.45)
+          (0.1, 0.20)
+        };
+        \addplot[color=blue, mark=x, only marks] coordinates {
+          (0.83, 0.62)
+          (0.80, 0.59)
+          (0.74, 0.60)
+          (0.63, 0.56)
+          (0.61, 0.36)
+          (0.51, 0.34)
+          (0.50, 0.40)
+          (0.49, 0.41)
+          (0.47, 0.42)
+          (0.46, 0.30)
+          (0.44, 0.25)
+          (0.24, 0.20)
+          (0.10, 0.10)
+        };
+      \end{axis}
+    \end{tikzpicture}
+
+    \column{0.4\textwidth}
+    \footnotesize
+
+    Markets/Shops
+    \begin{itemize}
+    \item Berkeley Bowl
+    \item Monterey Market
+    \item Acme
+    \item The Local Butcher Shop
+    \item Sweet Maria's
+    \item Yaoya-san
+    \item $\ldots$
+    \end{itemize}
+
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Acknowledgment}
@@ -18,11 +67,11 @@
   \begin{figure}
     \includegraphics[width=\linewidth]{figures/ack-profs.pdf}
   \end{figure}
+  \vspace{-0.5em}
   \pause
   \begin{figure}
     \includegraphics[width=\linewidth]{figures/ack-students.pdf}
   \end{figure}
-
 \end{frame}
 
 \begin{frame}{Acknowledgement}
