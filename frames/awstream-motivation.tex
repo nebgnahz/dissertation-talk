@@ -1,15 +1,120 @@
-\begin{frame}{Scarce and Variable Bandwidth}
+\begin{frame}{Network Resource Constraints}
+  \vspace{1em}
+  \metroset{block=fill}
+  \only<2,3>{
+    \begin{columns}
+      \column{0.5\textwidth}
+      \begin{alertblock}{Demand}
+        Huge Data Volume at the Edge
+      \end{alertblock}
+      \column{0.5\textwidth}
+      \begin{block}{Resource}
+        Insufficient WAN Bandwidth
+      \end{block}
+    \end{columns}
+  }
+  \only<4>{
+    \begin{columns}
+      \column{0.5\textwidth}
+      \begin{block}{Demand}
+        Huge Data Volume at the Edge
+      \end{block}
+      \column{0.5\textwidth}
+      \begin{alertblock}{Resource}
+        Insufficient WAN Bandwidth
+      \end{alertblock}
+    \end{columns}
+  }
+  \only<1,5->{
+    \begin{columns}
 
+      \column{0.5\textwidth}
+      \begin{block}{Demand}
+        Huge Data Volume at the Edge
+      \end{block}
+      \column{0.5\textwidth}
+      \begin{block}{Resource}
+        Insufficient WAN Bandwidth
+      \end{block}
+    \end{columns}
+  }    
+
+  \vspace{1em}
+
+  \alt<2>{
+    \begin{itemize}
+    \item Video surveillance, 3 mbps per camera~\cite{amerasinghe2009h}
+    \item Electrical grid monitoring, 1.4 million data points per second~\cite{andersen2016btrdb}
+    \item Machine logs, 25 TB daily at Facebook (2009)
+    \end{itemize}
+  }
+
+  \alt<3>{
+    \textit{$\ldots$ Dropcam, a WiFi video-streaming camera and associated cloud backend
+    service for storing and watching the resulting video. Dropcam has the fewest
+    clients (2,940) $\ldots$. Yet, each client uses roughly 2.8 GB a week and
+    uploads nearly 19 times more than they download, implying that Dropcam users
+    do not often watch what they record.}
+
+    Large-scale Measurements of Wireless Network Behavior \\
+    \cite{biswas2015large}
+  }
+
+  \alt<4>{
+    \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{figures/aws-variation.pdf}
+      \caption{Bandwidth variations throughout the day between Amazon EC2 sites.}
+    \end{figure}
+  }  
+
+  \visible<5>{
+    \begin{figure}
+      \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/cisco.pdf}
+        \caption{Cisco Project Data Growth~\cite{cisco2013zettabyte}}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{figures/telegeography.pdf}
+        \caption{Network backbone capacity growth slows
+          down~\cite{global2016telegeography}}
+      \end{subfigure}
+    \end{figure}
+  }  
 \end{frame}
 
 \begin{frame}{Fidelity vs.\,Freshness}
-  \vspace{2em}
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.8\columnwidth]{figures/fidelity-freshness.pdf}
-    \caption{The trade-off space between data freshness and fidelity when facing
-      insufficient bandwidth.}
-  \end{figure}
+  When the network resource is not sufficient:
+
+  \begin{itemize}
+  \item TCP ensures data delivery, but hurts latency
+  \item UDP sends as fast as possible, uncontrolled packet loss
+  \item Developer heuristics are sub-optimal
+    \only<1>{
+      \begin{itemize}
+      \item JetStream~\cite{rabkin2014aggregation} uses manual policy
+      \item ``if bandwidth is insufficient, switch to sending images at 75\% fidelity,
+        then 50\% if still not enough''
+      \end{itemize}
+    }
+  \item Application-specific optimizations don't generalize
+    \only<1>{
+      \begin{itemize}
+      \item Video streaming often aims at Quality of Experience (limited degradation dimension, e.g. maintain
+        25FPS)
+      \item More on next slide
+      \end{itemize}
+    }
+  \end{itemize}
+
+  \only<2>{
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\columnwidth]{figures/fidelity-freshness.pdf}
+    \end{figure}
+  }
 \end{frame}
 
 \captionsetup[figure]{labelformat=empty,font=scriptsize,labelfont=scriptsize}
@@ -187,24 +292,41 @@
 \end{frame}
 
 \begin{frame}{Making Adaptation Practical is Challenging}
+  \vspace{1em}
 
-  \textbf{Goal}: Minimize bandwidth while maximizing application accuracy
+  \metroset{block=fill}
 
-  \begin{block}{My block}
-    Content of my block.
+  \begin{block}{Goal}
+    Minimize bandwidth while maximizing application accuracy
   \end{block}
 
   \textbf{Challenges}:
-  \begin{itemize}
-  \item Application-specific optimizations don't generalize
-  \item API. \texttt{maybe} operators to express adaptation.
-  \item It requires expertise and manual work to explore multidimensional
-    adaptation
-  \item Profiling: automatically learn Pareto-optimal strategy with
-    multi-dimensional exploration.
-  \item The adaptation needs to happen at the runtime: no viable system yet
-  \item runtime adaptation balances the latency with data accuracy
-  \end{itemize}
+
+  \begin{enumerate}
+    \visible<2->{\item Application-specific optimizations don't generalize.}
+    \visible<5->{
+      \begin{itemize}
+      \item API. \texttt{maybe} operators to express adaptation.
+      \end{itemize}
+    }    
+    \visible<3->{
+    \item It requires expertise and manual work to explore multidimensional adaptation.
+    }
+    \visible<6->{
+      \begin{itemize}
+      \item Profiling: automatically learn Pareto-optimal strategy with
+        multi-dimensional exploration.
+      \end{itemize}
+    }
+    \visible<4->{
+    \item The adaptation happens at the runtime.
+    }
+    \visible<7->{
+      \begin{itemize}
+      \item Engineering an adaptation system to balance latency and accuracy.
+      \end{itemize}
+    }
+  \end{enumerate}
 \end{frame}
 
 \begin{frame}{System Architecture Overview}
@@ -220,4 +342,5 @@
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../talk"
+%%% TeX-engine: xetex
 %%% End:
