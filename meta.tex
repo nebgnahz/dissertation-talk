@@ -1,12 +1,10 @@
-\setbeamerfont{section title}{size=\normalsize}
-
 \usepackage[scale=2]{ccicons}
 \usepackage{algpseudocode}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{appendixnumberbeamer}
 \usepackage{booktabs}
-\usepackage{caption}
+\usepackage[font=small]{caption}
 \usepackage{fancyvrb}
 \usepackage{fontenc}
 \usepackage{fontspec}
@@ -38,6 +36,10 @@
   rn/.style={draw,thick,rounded corners,fill=red!20,inner sep=.2cm},
   to/.style={->,>=stealth,shorten >=1pt, semithick},
 }
+
+\setbeamerfont{section title}{size=\normalsize}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\captionsetup{labelformat=empty, font=footnotesize}
 
 \definecolor[named]{ACMBlue}{cmyk}{1,0.1,0,0.1}
 \definecolor[named]{ACMYellow}{cmyk}{0,0.16,1,0}
