@@ -52,8 +52,9 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Evaluation: Runtime Experiment Setup}
+\begin{frame}{Evaluation: Runtime Experiment Baselines}
   \vspace{1em}
+  \only<1-4>{
   \begin{table}
     \footnotesize
     \centering
@@ -86,6 +87,15 @@
     \end{tabular}
     \caption{Compare AWStream with baselines}
   \end{table}
+  }
+
+  \only<5->{
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/hls.pdf}
+      \caption{HTTP Live Streaming Architecture}
+    \end{figure}
+  }
 \end{frame}
 
 \begin{frame}{Evaluation: Runtime Performance}
