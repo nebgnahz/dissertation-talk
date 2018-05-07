@@ -1,3 +1,17 @@
+\begin{frame}{Scarce and Variable Bandwidth}
+
+\end{frame}
+
+\begin{frame}{Fidelity vs.\,Freshness}
+  \vspace{2em}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\columnwidth]{figures/fidelity-freshness.pdf}
+    \caption{The trade-off space between data freshness and fidelity when facing
+      insufficient bandwidth.}
+  \end{figure}
+\end{frame}
+
 \captionsetup[figure]{labelformat=empty,font=scriptsize,labelfont=scriptsize}
 \begin{frame}{Application-specific Optimizations Don't Generalize}
   \pgfplotstableread[row sep=\\,col sep=&]{
@@ -170,6 +184,37 @@
       \end{axis}
     \end{tikzpicture}
   \end{columns}
+\end{frame}
+
+\begin{frame}{Making Adaptation Practical is Challenging}
+
+  \textbf{Goal}: Minimize bandwidth while maximizing application accuracy
+
+  \begin{block}{My block}
+    Content of my block.
+  \end{block}
+
+  \textbf{Challenges}:
+  \begin{itemize}
+  \item Application-specific optimizations don't generalize
+  \item API. \texttt{maybe} operators to express adaptation.
+  \item It requires expertise and manual work to explore multidimensional
+    adaptation
+  \item Profiling: automatically learn Pareto-optimal strategy with
+    multi-dimensional exploration.
+  \item The adaptation needs to happen at the runtime: no viable system yet
+  \item runtime adaptation balances the latency with data accuracy
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{System Architecture Overview}
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/arch.pdf}\\
+  \begin{tikzpicture}
+    \draw[dashed] (0,0) -- (10,0);
+  \end{tikzpicture}
+  \centering
+  \includegraphics[width=0.7\linewidth]{figures/arch-2.pdf}
 \end{frame}
 
 %%% Local Variables:

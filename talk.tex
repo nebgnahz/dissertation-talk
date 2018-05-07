@@ -38,9 +38,19 @@
   \setbeamertemplate{section in toc}[sections numbered]
   \tableofcontents[hideallsubsections]
 \end{frame}
+
 \input{intro}
-\input{awstream}
-\input{brt}
+
+\section{AWStream: Network Resource Adaptation}
+\input{frames/awstream-motivation.tex}
+\input{frames/awstream-api.tex}
+\input{frames/awstream-profiling.tex}
+\input{frames/awstream-apps.tex}
+\input{frames/awstream-eval.tex}
+
+\section{BRT: Compute Resource Adaptation}
+\input{frames/serving-motivation.tex}
+
 \input{conclusion}
 
 \appendix
@@ -65,16 +75,22 @@
 % \input{frames/awstream-apps}
 % \input{frames/awstream-eval}
 
-\input{frames/serving-motivation}
+% \input{frames/serving-motivation}
+\input{frames/serving-violajones}
 
 % \input{ack}
 
 \fi
 
 {
+  \setbeamerfont{bibliography item}{size=\scriptsize}
+  \setbeamerfont{bibliography entry author}{size=\scriptsize}
+  \setbeamerfont{bibliography entry title}{size=\scriptsize}
+  \setbeamerfont{bibliography entry location}{size=\scriptsize}
+  \setbeamerfont{bibliography entry note}{size=\scriptsize}
+
   \metroset{titleformat frame=allsmallcaps}
   \begin{frame}[allowframebreaks]{References}
-    \scriptsize
     \bibliographystyle{apalike}
     \bibliography{talk}
   \end{frame}

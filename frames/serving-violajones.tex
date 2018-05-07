@@ -1,0 +1,47 @@
+\begin{frame}[fragile]{detectMultiScale}
+  \footnotesize
+  \begin{columns}
+    \column{0.5\textwidth}
+    Include a figure explain three parameters of VJ FD.
+    
+    \begin{itemize}
+    \item \texttt{scale\_factor}: Parameter specifying how much the image size is
+      reduced at each image scale.
+    \item \texttt{min\_neighbors}: Parameter specifying
+      how many neighbors each candidate rectangle should have to retain it.
+    \item \texttt{min\_size}: Minimum possible object size. Objects smaller than
+      this size are ignored.
+    \end{itemize}
+
+    \column{0.5\textwidth}
+    Histogram of Oriented Gradients (HOG)
+
+\begin{Verbatim}[fontsize=\scriptsize]
+pub struct HogParams {
+    pub win_size: Size2i,
+    pub block_size: Size2i,
+    pub block_stride: Size2i,
+    pub cell_size: Size2i,
+    pub nbins: c_int,
+    pub win_sigma: f64,
+    pub l2hys_threshold: f64,
+    pub gamma_correction: bool,
+    pub nlevels: usize,
+    pub hit_threshold: f64,
+    pub win_stride: Size2i,
+    pub padding: Size2i,
+    pub scale: f64,
+    pub group_threshold: c_int,
+    pub use_meanshift_grouping: bool,
+    pub final_threshold: f64,
+}
+\end{Verbatim}
+
+  \end{columns}
+\end{frame}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../talk"
+%%% TeX-engine: xetex
+%%% End:
