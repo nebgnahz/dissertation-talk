@@ -40,6 +40,7 @@
 \setbeamerfont{section title}{size=\normalsize}
 \setbeamertemplate{caption}{\raggedright\insertcaption\par}
 \captionsetup{labelformat=empty, font=footnotesize}
+\captionsetup[subfigure]{labelfont=footnotesize,font=footnotesize}
 
 \definecolor[named]{ACMBlue}{cmyk}{1,0.1,0,0.1}
 \definecolor[named]{ACMYellow}{cmyk}{0,0.16,1,0}
@@ -94,6 +95,8 @@
 
 \newcommand{\specialcell}[2][c]{%
   \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\newcommand{\creditline}[1]{{\let\thefootnote\relax\footnotetext[1]{#1}}}
 
 %%% Local Variables:
 %%% mode: latex
