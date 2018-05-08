@@ -4,23 +4,32 @@
     Adapt computation to different platforms.
   \end{block}
 
-  \textbf{Challenges}:
+  \visible<2->{
+    \textbf{Challenges}:
 
-  \begin{enumerate}
-  \item Large parameter space.
-    \begin{itemize}
-    \item Use Bayesian Optimization (BO) for profiling.
-    \end{itemize}
-  \item Devices have a wide range of capabilities.
-    \begin{itemize}
-    \item Profile transfer: refine existing Pareto points.
-    \end{itemize}
-  \end{enumerate}
+    \begin{enumerate}
+    \item Large parameter space.
+      \visible<3->{
+        \begin{itemize}
+        \item Previous approaches use random search or coordinate/greedy
+          approach.
+        \item We propose using Bayesian Optimization (BO) for profiling.
+        \end{itemize}
+      }
+    \item Devices have a wide range of capabilities (and not available when profiling)
+      \visible<4->{
+        \begin{itemize}
+        \item Profile transfer: refine existing Pareto points.
+        \end{itemize}
+      }
+    \end{enumerate}
+  }
 \end{frame}
 
-\begin{frame}{Bayesian Optimization}
-  Bayesian optimization provides a principled way for searching optimal
-  hyperparameters for a single algorithm. Effective for,
+\begin{frame}{Bayesian Optimization 101}
+  Bayesian optimization approximate black-box functions with proxy functions and
+  iteratively proposes new sample point in the large parameter space. Effective
+  for,
 
   \begin{itemize}
     % https://dhnzl.files.wordpress.com/2016/12/fuzzymad2016_bo_pdf.pdf
@@ -73,10 +82,11 @@
 \end{frame}
 
 \begin{frame}{Bayesian Optimization For Performance Modeling}
-  \vspace{1em} We use PESMO\footnote{It chooses evaluation points to maximally
-    reduce the entropy of the posterior distribution over the Pareto
-    set.}~\cite{hernandez2016predictive} and compare it with two baselines: (1)
-  greedy/coordinate search; (2) random search.
+  \vspace{1em} We use PESMO\footnote{A Python package based on Spearmint. It
+    chooses evaluation points to maximally reduce the entropy of the posterior
+    distribution over the Pareto set.}~\cite{hernandez2016predictive} and
+  compare it with two baselines: (1) greedy/coordinate search; (2) random
+  search.
 
   \pause
   \begin{figure}
@@ -89,14 +99,17 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Profile Transfer}
+\begin{frame}{Profile Transfer (without re-running the entire BO)}
   \vspace{1em}
 
-  The profile (accuracy vs.\,processing times) is transferable across machines.
+  We make the following observations:
+
   \begin{itemize}
-  \item Accuracy stays the same across machines (for a given algorithm,
-    parameter).
-  \item Processing time can be approximated with a linear model.
+  \item Accuracy remains for a given algorithm/parameter.
+  \item Processing time order is preserved
+    \begin{itemize}
+    \item More expensive algorithms/parameters remain the same across platforms.
+    \end{itemize}
   \item The ``Pareto-optimal'' is horizontally stretched/compressed.
   \end{itemize}
 
@@ -104,8 +117,9 @@
     \begin{figure}
       \centering
       \includegraphics[width=0.95\linewidth]{figures/serving-cross-platform.pdf}
-      \caption{(Left) Linear approximation of processing times. (Right)
-        Stretched/compressed profile. See paper for details.}
+      \caption{(Left) Empirically, processing times follows a linear
+        approximation. (Right) Stretched/compressed profile. See paper for
+        details.}
     \end{figure}
   }
 \end{frame}

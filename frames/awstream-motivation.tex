@@ -61,10 +61,14 @@
   }
 
   \alt<4>{
+    \hypertarget{aws-variation}{}
     \begin{figure}
       \centering
       \includegraphics[width=\textwidth]{figures/aws-variation.pdf}
-      \caption{Bandwidth variations throughout the day between Amazon EC2 sites.}
+      \caption{Bandwidth variations throughout the day between Amazon EC2
+        sites. Similar measurements for wireless networks, broadband access
+        networks and cellular networks (\hyperlink{cellular-variation}{backup
+          slides}).}
     \end{figure}
   }  
 
@@ -85,8 +89,7 @@
   % }
   \visible<5>{
 
-    Do we have to transmit the data? I have heard edge processing.\footnote{I will
-    cover in the second half of this talk}.
+    What about edge processing? (I will cover in the second half of this talk).
    
     \begin{itemize}
     \item Large performance gap between the cloud and the edge (GPU/TPU/ASIC).
@@ -118,18 +121,18 @@
       \begin{itemize}
       \item Video streaming often aims at Quality of Experience (limited
         degradation dimension, e.g. maintain 25FPS)
-      \item More on next slide
+      \item For object detection, resolution matters more than FPS
       \end{itemize}
     }
   \end{itemize}
 
-  \only<2>{
+  \only<5>{
     \begin{figure}
       \centering
       \includegraphics[width=0.8\columnwidth]{figures/fidelity-freshness.pdf}
     \end{figure}
   }
-  \only<3>{
+  \only<6>{
     \begin{figure}
       \centering
       \includegraphics[width=0.8\columnwidth]{figures/fidelity-freshness-full.pdf}
@@ -156,9 +159,9 @@
     360p & 17 & 11 \\
   }\stationaryresolution
 
-  \begin{columns}[c]
+  \begin{columns}[t]
+    \vspace{1em}
     \column{0.4\textwidth}
-    \vspace{2em}
     \begin{figure}
       \centering
       \includegraphics[width=\linewidth]{figures/mot-1.pdf}
@@ -172,54 +175,122 @@
     \end{figure}
 
     \column{0.6\textwidth}
-    \vspace{1.5em}
 
-    \begin{tikzpicture}
-      \tikzstyle{every node}=[font=\footnotesize]
-      \begin{axis}[
-        ybar,
-        bar width               = .4cm,
-        width                   = 1.1\textwidth,
-        height                  = 0.4\textheight,
-        legend style            = {at = {(0.5, 1.4)}, anchor = north,legend columns = -1},
-        symbolic x coords       = {30, 10, 5, 3, 2},
-        xtick                   = data,
-        enlarge x limits        = 0.15,
-        ymin                    = 0,
-        ymax                    = 130,
-        xlabel                  = {Frame Rate},
-        nodes near coords,
-        nodes near coords align = {vertical},
-        ]
-        \addplot table[x=Frame Rate,y=Bandwidth (normalized)]{\stationaryframerate};
-        \addplot+[visible on=<2>] table[x=Frame Rate,y=Accuracy]{\stationaryframerate};
-        \legend{Bandwidth (normalized), Accuracy}
-      \end{axis}
-    \end{tikzpicture}
+    \only<2>{
+      Positive if intersection over union (IOU) larger than 0.5.
 
-    \vspace{1em}
+      \[
+        \text{IOU} = \frac{\text{Area of Intersection}}{\text{Area of Union}}
+      \]
 
-    \begin{tikzpicture}
-      \tikzstyle{every node}=[font=\footnotesize]
-      \begin{axis}[
-        ybar,
-        bar width               = .4cm,
-        width                   = 1.1\textwidth,
-        height                  = 0.4\textheight,
-        symbolic x coords       = {1080p, 900p, 720p, 540p, 360p},
-        xtick                   = data,
-        enlarge x limits        = 0.15,
-        nodes near coords,
-        nodes near coords align = {vertical},
-        ymin                    = 0,
-        ymax                    = 130,
-        xlabel                  = {Resolution},
-        ]
-        \addplot table[x = Resolution, y = Bandwidth (normalized)]{\stationaryresolution};
-        \addplot table[x = Resolution, y = Accuracy]{\stationaryresolution};
-        \legend{}
-      \end{axis}
-    \end{tikzpicture}
+      \begin{figure}
+        \begin{subfigure}{0.3\textwidth}
+          \begin{tikzpicture}
+            \fill[color=blue!30] (0.5, 0.5) rectangle (1, 1);
+            \node[draw=none] () at (1.5, 1.5) {};
+            \draw (0, 0) rectangle (1, 1);
+            \draw[densely dashed] (0.5, 0.5) rectangle (1.5, 1.5);
+          \end{tikzpicture}
+          \caption{IOU=0.14}
+        \end{subfigure}
+        \begin{subfigure}{0.3\textwidth}
+          \begin{tikzpicture}
+            \fill[color=blue!30] (0.15, 0.15) rectangle (1, 1);
+            \node[draw=none] () at (1.5, 1.5) {};
+            \draw (0, 0) rectangle (1, 1);
+            \draw[densely dashed] (0.15, 0.15) rectangle (1.15, 1.15);
+          \end{tikzpicture}
+          \caption{IOU=0.57}
+        \end{subfigure}
+        \begin{subfigure}{0.3\textwidth}
+          \begin{tikzpicture}
+            \fill[color=blue!30] (0.05, 0.05) rectangle (1, 1);
+            \node[draw=none] () at (1.5, 1.5) {};
+            \draw[densely dashed] (0.05, 0.05) rectangle (1.05, 1.05);
+            \draw (0, 0) rectangle (1, 1);
+          \end{tikzpicture}
+          \caption{IOU=0.82}
+        \end{subfigure}
+      \end{figure}
+    }
+
+    \only<3>{
+      
+      F1 score is the harmonic mean of precision and recall, ranging from 0 to
+      1:
+
+      \begin{table}
+        \centering
+        \begin{tabular}{| c | c | c |}
+          \hline
+          & P & N \\
+          \hline
+          Y & True Positive & False Positive \\
+          \hline
+          N & True Positive & False Positive \\
+          \hline
+        \end{tabular}
+      \end{table}
+
+      \begin{equation*}
+        \begin{split}
+          \text{Precision} &= \frac{\text{true positive}}{\text{all positive}} \\
+          \text{Recall} &= \frac{\text{true positive}}{\text{all detection}} \\
+          \text{F1} &= \frac{2}{\frac{1}{\text{Recall}} + \frac{1}{\text{Precision}}}
+        \end{split}
+      \end{equation*}
+
+    }
+    \only<4->{
+      \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\footnotesize]
+        \begin{axis}[
+          ybar,
+          bar width               = .4cm,
+          width                   = 1.1\textwidth,
+          height                  = 0.4\textheight,
+          legend style            = {at = {(0.5, 1.4)}, anchor = north,legend columns = -1},
+          symbolic x coords       = {30, 10, 5, 3, 2},
+          xtick                   = data,
+          enlarge x limits        = 0.15,
+          ymin                    = 0,
+          ymax                    = 130,
+          xlabel                  = {Frame Rate},
+          nodes near coords,
+          nodes near coords align = {vertical},
+          ]
+          \addplot+[visible on=<6->] table[x=Frame Rate,y=Bandwidth (normalized)]{\stationaryframerate};
+          \addplot+[visible on=<5->] table[x=Frame Rate,y=Accuracy]{\stationaryframerate};
+          \legend{Bandwidth (normalized), Accuracy}
+        \end{axis}
+      \end{tikzpicture}
+
+      \vspace{1em}
+
+      \visible<7>{
+        \begin{tikzpicture}
+          \tikzstyle{every node}=[font=\footnotesize]
+          \begin{axis}[
+            ybar,
+            bar width               = .4cm,
+            width                   = 1.1\textwidth,
+            height                  = 0.4\textheight,
+            symbolic x coords       = {1080p, 900p, 720p, 540p, 360p},
+            xtick                   = data,
+            enlarge x limits        = 0.15,
+            nodes near coords,
+            nodes near coords align = {vertical},
+            ymin                    = 0,
+            ymax                    = 130,
+            xlabel                  = {Resolution},
+            ]
+            \addplot table[x = Resolution, y = Bandwidth (normalized)]{\stationaryresolution};
+            \addplot table[x = Resolution, y = Accuracy]{\stationaryresolution};
+            \legend{}
+          \end{axis}
+        \end{tikzpicture}
+      }
+    }
   \end{columns}
 \end{frame}
 
