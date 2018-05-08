@@ -25,7 +25,7 @@
       \end{alertblock}
     \end{columns}
   }
-  \only<1>{
+  \only<1,5->{
     \begin{columns}
 
       \column{0.5\textwidth}
@@ -82,7 +82,19 @@
   %         down~\cite{global2016telegeography}}
   %     \end{subfigure}
   %   \end{figure}
-  % }  
+  % }
+  \visible<5>{
+
+    Do we have to transmit the data? I have heard edge processing.\footnote{I will
+    cover in the second half of this talk}.
+   
+    \begin{itemize}
+    \item Large performance gap between the cloud and the edge (GPU/TPU/ASIC).
+    \item Aggregation is sometimes necessary in applications.
+    \item Last-hop wireless may become the bottleneck.
+    \end{itemize}
+  }
+  
 \end{frame}
 
 \begin{frame}[t]{Fidelity vs.\,Freshness}

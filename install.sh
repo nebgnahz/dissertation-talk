@@ -28,6 +28,8 @@ if ! command -v xetex > /dev/null; then
   # list: http://ctan.mirrors.hoobly.com/systems/texlive/tlnet/archive/
   tlmgr install \
         animate \
+        media9 \
+        ocgx2 \
         appendixnumberbeamer \
         beamer \
         beamertheme-metropolis \
