@@ -1,7 +1,7 @@
 \ifdefined\ishandout
-  \documentclass[handout, 10pt]{beamer}
+  \documentclass[xcolor=table, handout, 10pt]{beamer}
 \else
-  \documentclass[10pt]{beamer}
+  \documentclass[xcolor=table, 10pt]{beamer}
 \fi
 
 \usetheme[
@@ -72,12 +72,13 @@
 
 \else
 
-\input{frames/awstream-motivation.tex}
+\input{intro}
+
+% \input{frames/awstream-motivation.tex}
 % \input{frames/awstream-api.tex}
 % \input{frames/awstream-profiling.tex}
 % \input{frames/awstream-apps.tex}
 % \input{frames/awstream-eval.tex}
-
 % \input{frames/serving-motivation}
 % \input{frames/serving-violajones}
 % \input{frames/serving-bo}
@@ -85,7 +86,7 @@
 % \input{frames/conclusion}
 % \input{ack}
 
-\input{backup}
+% \input{backup}
 
 \fi
 
