@@ -1,3 +1,23 @@
+\begin{frame}{Challenges in Adapting Computation}
+  \metroset{block=fill}
+  \begin{block}{Goal}
+    Adapt computation to different platforms.
+  \end{block}
+
+  \textbf{Challenges}:
+
+  \begin{enumerate}
+  \item Large parameter space.
+    \begin{itemize}
+    \item Use Bayesian Optimization (BO) for profiling.
+    \end{itemize}
+  \item Devices have a wide range of capabilities.
+    \begin{itemize}
+    \item Profile transfer: refine existing Pareto points.
+    \end{itemize}
+  \end{enumerate}
+\end{frame}
+
 \begin{frame}{Bayesian Optimization}
   Bayesian optimization provides a principled way for searching optimal
   hyperparameters for a single algorithm. Effective for,
@@ -69,11 +89,13 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Cross-Platform Performance Modeling}
+\begin{frame}{Profile Transfer}
   \vspace{1em}
-  The profile (performance model) is transferable across machines.
+
+  The profile (accuracy vs.\,processing times) is transferable across machines.
   \begin{itemize}
-  \item Accuracy stays the same across machines.
+  \item Accuracy stays the same across machines (for a given algorithm,
+    parameter).
   \item Processing time can be approximated with a linear model.
   \item The ``Pareto-optimal'' is horizontally stretched/compressed.
   \end{itemize}
