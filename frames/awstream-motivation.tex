@@ -49,11 +49,11 @@
     \end{itemize}
   }
 
-  \alt<3>{ \textit{$\ldots$ Dropcam, a WiFi video-streaming camera and
+  \alt<3>{ \textit{$\ldots$ \alert{Dropcam}, a WiFi video-streaming camera and
       associated cloud backend service for storing and watching the resulting
       video. Dropcam has \alert{the fewest clients} (2,940) $\ldots$. Yet, each
-      client uses roughly \alert{2.8 GB} a week and uploads \alert{nearly} 19
-      times more than they download, implying that Dropcam users do not often
+      client uses roughly \alert{2.8 GB} a week and uploads \alert{nearly 19
+        times more} than they download, implying that Dropcam users do not often
       watch what they record.}
 
     Large-scale Measurements of Wireless Network Behavior \\
@@ -66,9 +66,9 @@
       \centering
       \includegraphics[width=\textwidth]{figures/aws-variation.pdf}
       \caption{Bandwidth variations throughout the day between Amazon EC2
-        sites. Similar measurements for wireless networks, broadband access
-        networks and cellular networks (\hyperlink{cellular-variation}{backup
-          slides}).}
+        sites. Similar scarcity and variation for wireless networks, broadband
+        access networks and cellular networks
+        (\hyperlink{cellular-variation}{backup slides}).}
     \end{figure}
   }  
 
@@ -90,7 +90,9 @@
   \visible<5>{
 
     What about edge processing? (I will cover in the second half of this talk).
-   
+
+    But communication is not avoidable.
+    
     \begin{itemize}
     \item Large performance gap between the cloud and the edge (GPU/TPU/ASIC).
     \item Aggregation is sometimes necessary in applications.
@@ -106,18 +108,18 @@
   \begin{itemize}
   \item TCP ensures data delivery, but hurts latency
   \item UDP sends as fast as possible, uncontrolled packet loss
-  \only<1->{
+  \only<2->{
   \item Manual policies (developer heuristics) are sub-optimal
   }
-  \only<2>{
+  \only<3>{
       \begin{itemize}
       \item JetStream~\cite{rabkin2014aggregation} uses manual policy
       \item ``if bandwidth is insufficient, switch to sending images at 75\% fidelity,
         then 50\% if still not enough''
       \end{itemize}
     }
-  \only<3->{\item Application-specific optimizations don't generalize}
-    \only<4>{
+  \only<4->{\item Application-specific optimizations don't generalize}
+    \only<5>{
       \begin{itemize}
       \item Video streaming often aims at Quality of Experience (limited
         degradation dimension, e.g. maintain 25FPS)
@@ -126,13 +128,13 @@
     }
   \end{itemize}
 
-  \only<5>{
+  \only<7>{
     \begin{figure}
       \centering
       \includegraphics[width=0.8\columnwidth]{figures/fidelity-freshness.pdf}
     \end{figure}
   }
-  \only<6>{
+  \only<8>{
     \begin{figure}
       \centering
       \includegraphics[width=0.8\columnwidth]{figures/fidelity-freshness-full.pdf}
@@ -398,7 +400,7 @@
       \visible<2->{\item Application-specific optimizations don't generalize.}
       \visible<5->{
         \begin{itemize}
-        \item API. \texttt{maybe} operators to express adaptation.
+        \item APIs: \texttt{maybe} operators to express adaptation.
         \end{itemize}
       }    
       \visible<3->{

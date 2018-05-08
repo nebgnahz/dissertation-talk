@@ -68,7 +68,9 @@
 
 \begin{frame}[fragile]{detectMultiScale in Histogram of Oriented Gradients (HOG)}
   \vspace{1em}
-  \centering
+  \begin{columns}
+    \column{0.5\textwidth}
+    \centering
 \begin{Verbatim}[fontsize=\scriptsize]
 pub struct HogParams {
     pub win_size: Size2i,
@@ -89,6 +91,13 @@ pub struct HogParams {
     pub final_threshold: f64,
 }
 \end{Verbatim}
+    \column{0.5\textwidth}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.4\linewidth]{figures/hog.jpg}
+      \caption{Image Source: \url{learnopencv.com}.}
+    \end{figure}
+  \end{columns}
 \end{frame}
 
 %%% Local Variables:
